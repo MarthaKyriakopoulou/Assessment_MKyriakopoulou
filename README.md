@@ -76,11 +76,13 @@ FROM `bi-2019-test.ad_hoc.orders_jan2021`
 
 WHERE city IN 
   
-(SELECT city
+(
+SELECT city
 FROM  `bi-2019-test.ad_hoc.orders_jan2021` 
 GROUP BY city
 HAVING  COUNT(DISTINCT order_id) >500  
-ORDER BY city )
+ORDER BY city 
+)
 
 AND  cuisine_parent = "Breakfast"
 
@@ -177,7 +179,8 @@ FROM
          Group By b.brand, Quintile
 
          Order by Quintile
-     **
+         
+   ** SAME for USERS**
 
 SELECT b.brand,
         Sum(users_per_quintile) as quintile_users,
